@@ -120,3 +120,41 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #282c34;
+  padding: 10px 0;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: #61dafb;
+}
+
+.home-container, .burn-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.home-logo {
+  width: 150px;
+  margin: 20px 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 5px 0;
+}
+

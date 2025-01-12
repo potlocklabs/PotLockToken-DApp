@@ -1,170 +1,86 @@
-import React, { useEffect, useState } from "react";
-import {
-  connectWallet,
-  getCurrentWalletConnected,
-  getContractVariables,
-  burnTokens,
-  addContractEventListeners,
-  disconnectWallet, // Import the disconnect function
-} from "./util/interact.js";
-
+import React from "react";
 import PotLockTokenLogo from "./PotLockTokenLogo.svg";
+import "./FrontEndHome.css";
 
 const FrontEndHome = () => {
-  const [walletAddress, setWallet] = useState("");
-  const [status, setStatus] = useState("");
-  const [contractData, setContractData] = useState({
-    maxTokensPerWallet: 0,
-    sellTimeframe: 0,
-    totalSupply: 0,
-  });
-  const [burnAmount, setBurnAmount] = useState("");
-
-  useEffect(() => {
-    const initialize = async () => {
-      const { address, status } = await getCurrentWalletConnected();
-      setWallet(address);
-      setStatus(status);
-
-      loadContractVariables();
-      addWalletListener();
-      addSmartContractListener();
-    };
-
-    initialize();
-  }, []);
-
-  const loadContractVariables = async () => {
-    const data = await getContractVariables();
-    setContractData(data);
-  };
-
-  const addSmartContractListener = () => {
-    addContractEventListeners({
-      walletChosen: (error, event) => {
-        if (!error) console.log("WalletChosen Event:", event.returnValues);
-      },
-      timeframeUpdated: (error, event) => {
-        if (!error) console.log("TimeframeUpdated Event:", event.returnValues);
-      },
-      holderListUpdated: (error, event) => {
-        if (!error) console.log("HolderListUpdated Event:", event.returnValues);
-      },
-      burn: (error, event) => {
-        if (!error) console.log("Burn Event:", event.returnValues);
-      },
-    });
-  };
-
-  const addWalletListener = () => {
-    if (window.ethereum) {
-      window.ethereum.on("accountsChanged", (accounts) => {
-        if (accounts.length > 0) {
-          setWallet(accounts[0]);
-          setStatus("Wallet connected.");
-        } else {
-          setWallet("");
-          setStatus("🦊 Connect to Metamask using the top right button.");
-        }
-      });
-    }
-  };
-
-  const connectWalletPressed = async () => {
-    const walletResponse = await connectWallet();
-    setStatus(walletResponse.status);
-    setWallet(walletResponse.address);
-  };
-
-  const disconnectWalletPressed = () => {
-    // Clear wallet address and status in your dApp
-    setWallet("");
-    setStatus("Wallet disconnected. Note: You must disconnect manually in MetaMask.");
-    
-    // Optional: Reload the page to ensure the app behaves like it's disconnected
-    // window.location.reload();
-    const response = disconnectWallet();
-    //setWallet(response.address);
-    //setStatus(response.status);
-  };
-
-  const burnTokensPressed = async () => {
-    if (!burnAmount || isNaN(burnAmount) || Number(burnAmount) <= 0) {
-      alert("Please enter a valid number of tokens to burn.");
-      return;
-    }
-    const result = await burnTokens(burnAmount);
-    if (result.success) {
-      alert("Tokens burned successfully!");
-      setBurnAmount(""); // Clear input after success
-      loadContractVariables(); // Refresh contract variables
-    } else {
-      alert(`Error burning tokens: ${result.error}`);
-    }
-  };
-
   return (
-    <div id="container">
-      <img id="logo" src={PotLockTokenLogo} alt="PotLockTokenLogo logo"></img>
-      <div style={{ display: "flex", gap: "10px 20px" }}>
-        <button id="walletButton" onClick={connectWalletPressed}>
-          {walletAddress.length > 0
-            ? `Connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(38)}`
-            : "Connect Wallet"}
-        </button>
-        {walletAddress.length > 0 && (
-          <button
-            id="disconnectButton"
-            onClick={disconnectWalletPressed}
-            style={{
-              padding: "10px 10px",
-              backgroundColor: "#FF5733",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            Disconnect Wallet
-          </button>
-        )}
-      </div>
-
-      <h2>PotLockToken Data:</h2>
-      <p>Max Tokens Per Wallet: {contractData.maxTokensPerWallet}</p>
-      <p>Sell Timeframe: {contractData.sellTimeframe}</p>
-      <p>Total Supply: {contractData.totalSupply}</p>
-
-      <h2>Burn Tokens:</h2>
-      <div style={{ margin: "20px 0" }}>
-        <input
-          type="number"
-          placeholder="Enter number of tokens to burn"
-          onChange={(e) => setBurnAmount(e.target.value)}
-          value={burnAmount}
-          style={{
-            padding: "10px",
-            fontSize: "16px",
-            marginRight: "10px",
-            width: "200px",
-          }}
+    <div className="home-container">
+      <div className="home-header">
+        <img
+          src={PotLockTokenLogo}
+          alt="PotLockToken Logo"
+          className="home-logo"
         />
-        <button
-          onClick={burnTokensPressed}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "#4CAF50",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          Burn
-        </button>
+        <h1 className="home-title">Welcome to PotLockToken!</h1>
       </div>
+      <div className="home-content">
+        <p className="home-description">
+          PotLockToken is a revolutionary token with unique tokenomics designed
+          for growth and community involvement.
+        </p>
 
-      <p id="status">{status}</p>
+        <div className="home-feature-section">
+          <h2 className="home-section-title">How It Works</h2>
+          <div className="home-feature">
+            <div className="feature-icon">🔥</div>
+            <div className="feature-text">
+              Users can buy tokens as they normally would, but <b>only one holder</b> can sell during the defined sell period.
+            </div>
+          </div>
+          <div className="home-feature">
+            <div className="feature-icon">🎲</div>
+            <div className="feature-text">
+              The selected wallet is randomly chosen and can sell for the duration 
+              of the sell period. When it expires, token holders can burn tokens to 
+              reset the lottery and select a new wallet.
+            </div>
+          </div>
+          <div className="home-feature">
+            <div className="feature-icon">📊</div>
+            <div className="feature-text">
+              The currently selected wallet, sell period, and other contract details 
+              are displayed here for transparency.
+            </div>
+          </div>
+        </div>
+
+        <div className="home-feature-section">
+          <h2 className="home-section-title">Tokenomics</h2>
+          <div className="home-feature">
+            <div className="feature-icon">💰</div>
+            <div className="feature-text">
+              <b>Total Supply:</b> 1,000,000 tokens
+            </div>
+          </div>
+          <div className="home-feature">
+            <div className="feature-icon">📈</div>
+            <div className="feature-text">
+              <b>Max Holding Per Wallet:</b> 100 tokens
+            </div>
+          </div>
+          <div className="home-feature">
+            <div className="feature-icon">🔥</div>
+            <div className="feature-text">
+              <b>Burn Mechanism:</b> Every burn changes the selling wallet.
+            </div>
+          </div>
+          <div className="home-feature">
+            <div className="feature-icon">⚖️</div>
+            <div className="feature-text">
+              <b>Taxes:</b> 1% Devs, 2% Liquidity
+            </div>
+          </div>
+        </div>
+
+        <div className="home-disclaimer">
+          <h3 className="disclaimer-title">Disclaimer</h3>
+          <p>
+            Investing in cryptocurrencies involves significant risks, and you may
+            lose all your money. Please do your own research and invest
+            responsibly.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
