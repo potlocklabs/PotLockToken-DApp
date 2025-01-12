@@ -19,7 +19,7 @@ code {
 
 #container {
   width: 80vh;
- border: 4px dashed rgba(4, 4, 5, 0.1);
+border: 4px dashed rgba(4, 4, 5, 0.1);
     min-height: 140px;
     padding: 32px;
     position: relative;
@@ -54,7 +54,7 @@ input {
 button {
   padding: 9px 16px;
   max-height: 40px;
-  *box-shadow: 4px 4px 15px 0 rgb(0 0 0 / 20%);
+  box-shadow: 4px 4px 15px 0 rgb(0 0 0 / 20%);
   border-color:  #254cdd ;
   border: none;
   background: none;

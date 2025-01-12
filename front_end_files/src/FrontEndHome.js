@@ -8,7 +8,7 @@ import {
   disconnectWallet, // Import the disconnect function
 } from "./util/interact.js";
 
-import alchemylogo from "./alchemylogo.svg";
+import PotLockTokenLogo from "./PotLockTokenLogo.svg";
 
 const FrontEndHome = () => {
   const [walletAddress, setWallet] = useState("");
@@ -105,7 +105,7 @@ const FrontEndHome = () => {
 
   return (
     <div id="container">
-      <img id="logo" src={alchemylogo} alt="Alchemy logo"></img>
+      <img id="logo" src={PotLockTokenLogo} alt="PotLockTokenLogo logo"></img>
       <div style={{ display: "flex", gap: "10px 20px" }}>
         <button id="walletButton" onClick={connectWalletPressed}>
           {walletAddress.length > 0
