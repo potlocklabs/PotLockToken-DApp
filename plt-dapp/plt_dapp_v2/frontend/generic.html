@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>PotLock Connect and Contribute</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+    <link rel="stylesheet" href="/src/css/main.css" />
+    <noscript><link rel="stylesheet" href="/src/css/noscript.css" /></noscript>
+  </head>
+
+  <body class="is-preload">
+    <div id="wrapper">
+
+      <header id="header">
+        <a href="/" class="button small" style="position: absolute; left: 10px; top: 10px; z-index: 1000;">← Home</a>
+        <h1>Contribute to the PotLock!</h1>
+        <p>Connect your wallet to join in on the fun!</p>
+
+        <div class="connectButton" style="margin-bottom: 45px;">
+          <button id="connectWalletBtn" class="button primary">Connect Wallet</button>
+          <p id="walletAddressDisplay" style="display: none; margin-top: 10px;">
+            Connected: <span id="walletAddress"></span>
+          </p>
+        </div>
+      </header>
+
+      <div id="main">
+        <section id="content" class="main" style="max-width: 1200px; margin: 0 auto;">
+          <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+            <!-- Wallet Info -->
+            <div class="box">
+              <h2>Currently Selected Wallet:</h2>
+              <p id="selectedWallet" style="font-weight: bold; overflow: auto;">Connect wallet to find out</p>
+
+              <h2>Are You the Current Seller?</h2>
+              <p id="isCurrentSeller" style="font-weight: bold;">Connect wallet to find out</p>
+            </div>
+
+            <!-- Timer Info -->
+            <div class="box">
+              <h2>Next Wallet Rotation In:</h2>
+              <p id="sellCountdown" style="font-weight: bold;">--:--:--</p>
+
+              <h2>Last Wallet Change Was:</h2>
+              <p id="lastChangeAgo" style="font-weight: bold;">--</p>
+            </div>
+
+            <!-- Balance Info -->
+            <div class="box" style="text-align: center;">
+              <h2>Your PotLockToken Balance</h2>
+              <p><span id="tokenBalance" style="font-weight: bold;">Please connect wallet or buy $PLT</span></p>
+              <canvas id="walletMaxPieChart" width="250" height="250" style="margin: 1rem auto 0; display: block; max-width: 150px;"></canvas>
+              <p style="margin-top: 0.5rem; font-size: 1rem;">
+                Minimum Required to Qualify as Holder:<br />
+                <span id="minHolderBalance">--</span> $PLT
+              </p>
+            </div>
+
+            <!-- Burn -->
+            <div class="box">
+              <h2>Burn $PLT Tokens</h2>
+
+              <div id="burnExplosion" class="burn-container" style="margin-bottom: 10px;">
+                <div class="flame"></div>
+                <div class="glow"></div>
+                <div class="smoke"></div>
+              </div>
+
+              <input type="number" id="burnAmount" min="0" step="any" placeholder="Amount to burn (PLT)" style="margin-bottom: 0.5rem; width: 100%;" />
+              <button id="burnButton">Burn</button>
+              <p id="burnStatus" style="font-weight: bold; color: red;"></p>
+
+              <span>Note: Burning tokens only triggers a wallet rotation if the timer has expired. Otherwise, the tokens are permanently lost for no reason.</span>
+              <canvas id="burnPieChart" width="250" height="250" style="margin: 1rem auto 0; display: block; max-width: 200px;"></canvas>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer id="footer">
+        <section>
+          <h2>Disclaimer</h2>
+          <p>PotLockToken ($PLT) is a decentralized experimental token 
+                                with unique mechanics that may limit trading flexibility. 
+                                By purchasing, holding, or trading $PLT, you acknowledge and 
+                                accept the inherent risks associated with cryptocurrency assets, 
+                                including the possibility that it may take an extended period of 
+                                time before your wallet is selected to sell. PotLockToken makes 
+                                no guarantees regarding the timing or profitability of any 
+                                transaction. PotLockToken and its creators are not liable for 
+                                any financial losses. This project does not constitute financial 
+                                advice and should not be treated as an investment recommendation.</p>
+        </section>
+        <section>
+          <h2>Tax Disclaimer</h2>
+          <p>All $PLT transactions (including burns) are subject to a 3% total tax: 2% is 
+                                allocated to a liquidity wallet to support decentralized 
+                                exchange liquidity, and 1% is sent to the owner wallet for 
+                                marketing and operational expenses.</p>
+        </section>
+        <p class="copyright" style="text-align: center;">&copy; PotLockLabs 2025</p>
+      </footer>
+    </div>
+
+    <!-- External libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Main module (bundled via Vite) -->
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>
