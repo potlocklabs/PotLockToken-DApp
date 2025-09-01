@@ -6,15 +6,15 @@ import './token_interaction.js';
 import './wallet_connect_handler.js';
 import './breakpoints.min.js';
 
-// Wait for the document to be fully loaded and ready
-$(document).ready(function() {
+// Wait for the entire page to be fully loaded, including all scripts.
+window.onload = function() {
 
-    // Now it's safe to grab the breakpoints function from the global window object.
+    // Now it's guaranteed that the breakpoints function has been defined.
     const breakpoints = window.breakpoints;
 
     // Use a safety check to ensure breakpoints is a function before calling it.
     if (typeof breakpoints !== 'function') {
-      console.error("Error: breakpoints function is not defined.");
+      console.error("Error: breakpoints function is not defined. The library might not be loading correctly.");
       return;
     }
 
@@ -135,4 +135,4 @@ $(document).ready(function() {
         });
 
     })(jQuery);
-});
+};
