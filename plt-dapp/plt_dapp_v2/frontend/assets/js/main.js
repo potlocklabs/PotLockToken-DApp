@@ -1,10 +1,12 @@
 import $ from 'jquery';
-window.$ = window.jQuery = $; // Make it global
+window.$ = window.jQuery = $; // 👈 Make it global
 import './util.js';
 import './animations.js';
 import './token_interaction.js';
 import './wallet_connect_handler.js';
-import breakpoints from './breakpoints.min.js';
+import './breakpoints.js';
+
+const breakpoints = window.breakpoints; // explicitly grab from global
 
 (function($) {
 
