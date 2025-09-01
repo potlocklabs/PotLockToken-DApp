@@ -5,6 +5,7 @@ import './token_interaction.js';
 import './wallet_connect_handler.js';
 import './animations.js';
 
+
 (function($) {
 
 	var	$window = $(window),
