@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path'; // 👈 add this
+import { resolve } from 'path';
 
 export default defineConfig({
   base: './',   // ensures relative paths for assets
@@ -11,6 +11,9 @@ export default defineConfig({
         potlock: resolve(__dirname, 'potlock-info.html'),
       },
     },
+  },
+  optimizeDeps: {
+    include: ['jquery'], // ensures jQuery is bundled for dev
   },
   server: {
     host: true, // listen on all network interfaces
