@@ -6,7 +6,6 @@ import './token_interaction.js';
 import './wallet_connect_handler.js';
 import './jquery.scrolly.min.js';
 import './jquery.scrollex.min.js';
-import './breakpoints.min.js'
 
 
 (function($) {
