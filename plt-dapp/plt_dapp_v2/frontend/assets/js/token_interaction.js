@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', async function () {
       const burned = BigInt(maxS) - BigInt(curS);
       if (burnedSupplySpan) burnedSupplySpan.textContent = formatUnits(burned);
 
-      const currentVal = parseFloat(formatUnits(curS, tokenDecimals));
-      const burnedVal = parseFloat(formatUnits(burned, tokenDecimals));
+      const currentVal = parseFloat(ethers.utils.formatUnits(curS, tokenDecimals));
+      const burnedVal = parseFloat(ethers.utils.formatUnits(burned, tokenDecimals));
       const chartCtx = document.getElementById('burnPieChart')?.getContext('2d');
       if (chartCtx) {
         if (burnPieChart) {
