@@ -1,5 +1,3 @@
-import $ from 'jquery';
-window.$ = window.jQuery = $; // 👈 Make it global
 import './util.js';
 import './animations.js';
 import './token_interaction.js';
