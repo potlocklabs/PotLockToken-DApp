@@ -4,7 +4,6 @@ import './util.js';
 import './animations.js';
 import './token_interaction.js';
 import './wallet_connect_handler.js';
-import './breakpoints.min.js';
 
 
 (function($) {
