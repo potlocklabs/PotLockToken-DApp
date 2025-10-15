@@ -2,7 +2,7 @@ import { JsonRpcProvider, Contract, formatUnits, parseUnits } from 'ethers';
 import Chart from 'chart.js/auto';
 
 document.addEventListener('DOMContentLoaded', async function () {
-  const tokenAddress = '0xa023B6d35A4d6684627fE15E260CaF459414b2B2';
+  const tokenAddress = '0xd14bEEbC9ecB525c7a34F36724854f7C2F4F38f0';
   const tokenDecimals = 18;
 
   const erc20Abi = [
