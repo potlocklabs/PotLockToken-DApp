@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     "function lastWalletChange() view returns (uint256)",
     "function minHolderBalance() view returns (uint256)",
     "function isExemptFromAllRestrictions(address) view returns (bool)",
-    "function getHolderListLength() view returns (uint256)"
+    "function getEligibleHoldersLength() view returns (uint256)"
   ];
 
   const sellCountdownSpan = document.getElementById('sellCountdown');
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       const elapsed = nowUnix - lastChange;
 
       if (lastChangeAgoSpan) lastChangeAgoSpan.textContent = timeAgo(elapsed);
-      if (holderCountSpan) holderCountSpan.textContent = (await rpcContract.getHolderListLength()).toString();
+      if (holderCountSpan) holderCountSpan.textContent = (await rpcContract.getEligibleHoldersLength()).toString();
       if (maxSupplySpan) maxSupplySpan.textContent = formatUnits(await rpcContract.MAX_SUPPLY());
       if (currentSupplySpan) currentSupplySpan.textContent = formatUnits(await rpcContract.totalSupply());
       if (maxPerWalletSpan) maxPerWalletSpan.textContent = formatUnits(await rpcContract.maxTokensPerWallet());
