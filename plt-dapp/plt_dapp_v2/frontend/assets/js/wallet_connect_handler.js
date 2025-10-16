@@ -11,7 +11,7 @@ import Chart from 'chart.js/auto';
 import { wagmiConfig } from "./wagmiConfig";
 import { bsc as wagmiBsc } from 'wagmi/chains'; // Add this import for wagmi's bsc chain object
 
-const contractAddress = '0x85b7C49c8901b5cAd29E3bf4B3ed68f373eDeD33';
+const contractAddress = '0xa40600406fec82f67d3E8e4607CD92bD6F9F0290';
 const contractABI = [
   "function balanceOf(address) view returns (uint256)",
   "function decimals() view returns (uint8)",
